@@ -1,0 +1,36 @@
+#pragma code_page(65001)
+#include <windows.h>
+#include "resource.h"
+1 RT_MANIFEST "qreader.manifest"
+ID_ICON ICON "qreader.ico"
+
+ID_ACCELERATORS ACCELERATORS
+BEGIN
+    "O", ID_OPEN, VIRTKEY, CONTROL
+    "C", ID_COPY, VIRTKEY, CONTROL
+    "V", ID_PASTE, VIRTKEY, CONTROL
+    VK_F6, ID_CAPTURE, VIRTKEY
+END
+1 VERSIONINFO
+ FILEVERSION 1,2,0,0
+ PRODUCTVERSION 1,2,0,0
+ FILEFLAGSMASK 0x3fL
+ FILEOS VOS_NT_WINDOWS32
+ FILETYPE VFT_APP
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "FileDescription", "QReader - QR code reader\0"
+            VALUE "FileVersion", "1.2.0\0"
+            VALUE "ProductName", "QReader\0"
+            VALUE "ProductVersion", "1.2.0\0"
+            VALUE "LegalCopyright", "Copyright (c) 2026 QReader contributors\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END

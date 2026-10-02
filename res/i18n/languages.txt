@@ -1,0 +1,27 @@
+en|English|en-US|Segoe UI|ltr
+zh-CN|简体中文|zh-CN|Microsoft YaHei|ltr
+zh-TW|繁體中文|zh-TW|Microsoft JhengHei|ltr
+es|Español|es-ES|Segoe UI|ltr
+fr|Français|fr-FR|Segoe UI|ltr
+de|Deutsch|de-DE|Segoe UI|ltr
+pt|Português|pt-BR|Segoe UI|ltr
+ru|Русский|ru-RU|Segoe UI|ltr
+ar|العربية|ar-SA|Tahoma|rtl
+ja|日本語|ja-JP|Meiryo|ltr
+ko|한국어|ko-KR|Malgun Gothic|ltr
+hi|हिन्दी|hi-IN|Mangal|ltr
+bn|বাংলা|bn-BD|Vrinda|ltr
+ur|اردو|ur-PK|Tahoma|rtl
+id|Bahasa Indonesia|id-ID|Segoe UI|ltr
+ms|Bahasa Melayu|ms-MY|Segoe UI|ltr
+vi|Tiếng Việt|vi-VN|Segoe UI|ltr
+th|ไทย|th-TH|Tahoma|ltr
+tr|Türkçe|tr-TR|Segoe UI|ltr
+it|Italiano|it-IT|Segoe UI|ltr
+fa|فارسی|fa-IR|Tahoma|rtl
+sw|Kiswahili|sw-KE|Segoe UI|ltr
+nl|Nederlands|nl-NL|Segoe UI|ltr
+pl|Polski|pl-PL|Segoe UI|ltr
+uk|Українська|uk-UA|Segoe UI|ltr
+ro|Română|ro-RO|Segoe UI|ltr
+el|Ελληνικά|el-GR|Segoe UI|ltr

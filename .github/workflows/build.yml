@@ -1,0 +1,85 @@
+name: Build, test and release
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mingw:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate translations and release version
+        env:
+          REF_TYPE: ${{ github.ref_type }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          python3 tests/check_i18n.py
+          if [ "$REF_TYPE" = tag ]; then
+            python3 package_release.py --version --tag "$REF_NAME"
+          fi
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++-mingw-w64-x86-64-posix wine64 wine xvfb xauth fonts-noto-core fonts-noto-cjk
+      - name: Cache dependency archives
+        uses: actions/cache@v4
+        with:
+          path: .build/mingw/dependencies/downloads
+          key: qreader-opencv455-zxing140-v2
+      - name: Configure
+        run: |
+          mkdir -p .build/mingw
+          cd .build/mingw
+          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=../../mingw-w64.cmake -DCMAKE_CROSSCOMPILING_EMULATOR=wine ../..
+      - name: Build
+        run: cmake --build .build/mingw -- -j2
+      - name: Check Release binaries
+        run: |
+          cd .build/mingw
+          python3 ../../tests/check_imports.py --require-stripped qreader.exe libZXing.dll qreader_tests.exe qreader_windows_tests.exe qreader_gui_smoke.exe qreader_i18n_tests.exe
+      - name: Test under Wine
+        run: |
+          cd .build/mingw
+          WINEPREFIX="$GITHUB_WORKSPACE/.build/wine" WINEDEBUG=-all xvfb-run -a -s '-screen 0 2560x1600x24' ctest --output-on-failure
+      - name: Create release assets
+        run: python3 package_release.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qreader-release-assets
+          if-no-files-found: error
+          path: |
+            .build/release/*.zip
+            .build/release/*.tar.gz
+            .build/release/SHA256SUMS.txt
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: mingw
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: qreader-release-assets
+          path: .build/release
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          cd .build/release
+          sha256sum --check SHA256SUMS.txt
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" ./*.zip ./*.tar.gz SHA256SUMS.txt --clobber
+          else
+            gh release create "$RELEASE_TAG" ./*.zip ./*.tar.gz SHA256SUMS.txt \
+              --verify-tag --title "QReader $RELEASE_TAG" --generate-notes
+          fi

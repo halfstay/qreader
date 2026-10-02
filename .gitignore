@@ -1,0 +1,14 @@
+/.build/
+/build/
+/cmake-build-*/
+/.vs/
+/.idea/
+/.vscode/
+*.user
+Thumbs.db
+
+# Vim: swap files, backups (including persistent undo), history and sessions
+*.sw?
+*~
+.netrwhist
+Session.vim

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>QReader — QR code in a green scanning frame</title>
+  <rect x="8" y="8" width="240" height="240" rx="44" fill="#101e29"/>
+  <g fill="none" stroke="#39ef9c" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M76 36H44a8 8 0 0 0-8 8v32M180 36h32a8 8 0 0 1 8 8v32M36 180v32a8 8 0 0 0 8 8h32M180 220h32a8 8 0 0 0 8-8v-32"/>
+  </g>
+  <g fill="#f2fff8" fill-rule="evenodd">
+    <path d="M64 64h56v56H64zM76 76v32h32V76zM136 64h56v56h-56zM148 76v32h32V76zM64 136h56v56H64zM76 148v32h32v-32z"/>
+    <path d="M84 84h16v16H84zM156 84h16v16h-16zM84 156h16v16H84z"/>
+  </g>
+  <path fill="#39ef9c" d="M136 136h24v24h-24zM172 136h20v12h-20zM172 160h20v32h-12v-20h-8zM136 172h24v20h-24zM160 160h12v12h-12z"/>
+</svg>

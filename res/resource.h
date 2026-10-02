@@ -1,0 +1,16 @@
+#pragma once
+#define ID_MENU 101
+#define ID_ACCELERATORS 102
+#define ID_ICON 103
+#define ID_OPEN 1001
+#define ID_CAPTURE 1002
+#define ID_COPY 1003
+#define ID_EXIT 1004
+#define ID_ABOUT 1005
+#define ID_PASTE 1006
+#define ID_LANGUAGE_AUTO 2999
+#define ID_LANGUAGE_FIRST 3000
+#define ID_INDICATOR 1101
+#define ID_RESULTS 1102
+#define ID_DETAIL 1103
+#define ID_STATUS 1104
